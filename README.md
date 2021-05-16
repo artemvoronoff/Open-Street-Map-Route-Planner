@@ -66,4 +66,3 @@ The code for the A* Search algorithm has been broken down into the following fun
     5.) AddToOpen() - adds the node to the open list and marks the grid cell as closed
 
 
-@Udacity
