@@ -84,3 +84,6 @@ Mapping a large river with distinct banks on either side of the river.
 #Code Route Planning Project
 https://github.com/udacity/CppND-Route-Planning-Project
 
+
+#OSM Route Planner Code Structure
+[OSM Route Planner Code Structure](https://lucid.app/publicSegments/view/ccfc56ec-8c49-4ab1-8bc5-0c0afb594aa1/image.png)
