@@ -177,6 +177,134 @@ Afterwards, we call the AStarSearch function, and run it the coordinates, and it
 ```
 
 
+# planner.h file
+Here in the RoutePlanner Class definition, starts off with the constructor, and we have a GetDistance function that returns the distance in a private variable called distance. This will help us store the complete distance from the path we choose (starting to ending). Then we have the declaration of the AStarSearch method with finally, the AddNeighbors, CalculateHValue, ConstructFinalPath, NextNode functions that will help in constructing the AStarSearch method. 
+```
+class RoutePlanner {
+  public:
+    RoutePlanner(RouteModel &model, float start_x, float start_y, float end_x, float end_y);
+    // Add public variables or methods declarations here.
+    float GetDistance() const {return distance;}
+    void AStarSearch();
+
+    // The following methods have been made public so we can test them individually.
+    void AddNeighbors(RouteModel::Node *current_node);
+    float CalculateHValue(RouteModel::Node const *node);
+    std::vector<RouteModel::Node> ConstructFinalPath(RouteModel::Node *);
+    RouteModel::Node *NextNode();
+
+  private:
+    // Add private variables or methods declarations here.
+    std::vector<RouteModel::Node*> open_list;
+    RouteModel::Node *start_node;
+    RouteModel::Node *end_node;
+
+    float distance = 0.0f;
+    RouteModel &m_Model;
+};
+```
+
+# route_planner.cpp file
+Here we start off with multiplying them into percentages
+
+```
+RoutePlanner::RoutePlanner(RouteModel &model, float start_x, float start_y, float end_x, float end_y): m_Model(model) {
+    // Convert inputs to percentage:
+    start_x *= 0.01;
+    start_y *= 0.01;
+    end_x *= 0.01;
+    end_y *= 0.01;
+
+    // TODO 2: Use the m_Model.FindClosestNode method to find the closest nodes to the starting and ending coordinates.
+    // Store the nodes you find in the RoutePlanner's start_node and end_node attributes.
+
+}
+```
+
+# model.h file
+Headerfile for the Model class, this class stores all the open-street map data, that is read into the program. Provides all of the structs for all of the objects that we may find in the open-street map data (Node, Way, Road, Railway, Multipolygon, Building, Leisure, Water, etc.).
+Below that, there are getter functions that returns the vector of our street objects (Node, Way, Road, etc.) 
+Lastly, we have a private variable, MetricScale, is used to convert the scale of the model, to real-life meters. When we want to compute the, the actual meters we traverse in the path (beginning to end point). 
+
+```
+class Model
+{
+public:
+    struct Node {
+        double x = 0.f;
+        double y = 0.f;
+    };
+    
+    struct Way {
+        std::vector<int> nodes;
+    };
+    
+    struct Road {
+        enum Type { Invalid, Unclassified, Service, Residential,
+            Tertiary, Secondary, Primary, Trunk, Motorway, Footway };
+        int way;
+        Type type;
+    };
+    
+    struct Railway {
+        int way;
+    };    
+    
+    struct Multipolygon {
+        std::vector<int> outer;
+        std::vector<int> inner;
+    };
+    
+    struct Building : Multipolygon {};
+    
+    struct Leisure : Multipolygon {};
+    
+    struct Water : Multipolygon {};
+    
+    struct Landuse : Multipolygon {
+        enum Type { Invalid, Commercial, Construction, Grass, Forest, Industrial, Railway, Residential };
+        Type type;
+    };
+    
+    Model( const std::vector<std::byte> &xml );
+    
+    auto MetricScale() const noexcept { return m_MetricScale; }    
+    
+    auto &Nodes() const noexcept { return m_Nodes; }
+    auto &Ways() const noexcept { return m_Ways; }
+    auto &Roads() const noexcept { return m_Roads; }
+    auto &Buildings() const noexcept { return m_Buildings; }
+    auto &Leisures() const noexcept { return m_Leisures; }
+    auto &Waters() const noexcept { return m_Waters; }
+    auto &Landuses() const noexcept { return m_Landuses; }
+    auto &Railways() const noexcept { return m_Railways; }
+    
+private:
+    void AdjustCoordinates();
+    void BuildRings( Multipolygon &mp );
+    void LoadData(const std::vector<std::byte> &xml);
+    
+    std::vector<Node> m_Nodes;
+    std::vector<Way> m_Ways;
+    std::vector<Road> m_Roads;
+    std::vector<Railway> m_Railways;
+    std::vector<Building> m_Buildings;
+    std::vector<Leisure> m_Leisures;
+    std::vector<Water> m_Waters;
+    std::vector<Landuse> m_Landuses;
+    
+    double m_MinLat = 0.;
+    double m_MaxLat = 0.;
+    double m_MinLon = 0.;
+    double m_MaxLon = 0.;
+    double m_MetricScale = 1.f;
+};
+```
+
+# route_model.h && route_model.cpp files
+
+
+
 # Code Route Planning Project
 https://github.com/udacity/CppND-Route-Planning-Project
 
