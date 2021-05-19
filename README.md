@@ -83,7 +83,7 @@ Mapping a large river with distinct banks on either side of the river.
 # io2d implementation
 Here you could find the implementation, and download. [here](https://github.com/cpp-io2d/P0267_RefImpl/blob/master/BUILDING.md)
 
-Michael Kazakov's io2d demo
+io2d demo [kazakov](https://kazakov.life/2018/06/07/io2d-demo-maps/)
 
 Central Park:
 ./maps -b -73.9866,40.7635,-73.9613,40.7775
