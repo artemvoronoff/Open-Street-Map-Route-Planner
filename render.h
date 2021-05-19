@@ -58,6 +58,7 @@ private:
         io2d::dashes dashes{};
         float metric_width = 1.f;
     };
+    
     std::unordered_map<Model::Road::Type, RoadRep> m_RoadReps;
     
     std::unordered_map<Model::Landuse::Type, io2d::brush> m_LanduseBrushes;
