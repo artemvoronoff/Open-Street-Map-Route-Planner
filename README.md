@@ -81,9 +81,16 @@ Mapping a large river with distinct banks on either side of the river.
     ![alt text](https://video.udacity-data.com/topher/2019/August/5d51adfa_osm-river/osm-river.png)
 
 
-#Code Route Planning Project
+# Code Route Planning Project
 https://github.com/udacity/CppND-Route-Planning-Project
 
 
-#OSM Route Planner Code Structure
+# OSM Route Planner Code Structure
+
 [OSM Route Planner Code Structure](https://lucid.app/publicSegments/view/ccfc56ec-8c49-4ab1-8bc5-0c0afb594aa1/image.png)
+
+# Route Planning Starter Repo
+The starter code can be found [here](https://github.com/udacity/CppND-Route-Planning-Project)
+![alt text](https://github.com/udacity/CppND-Route-Planning-Project/blob/master/map.png)
+
+
