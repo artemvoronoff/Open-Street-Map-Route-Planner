@@ -95,7 +95,27 @@ Vatican:
 ./maps -b 12.44609,41.897,12.46575,41.907
 ![alt text](https://kazakov.life/wordpress/wp-content/uploads/2018/06/vatican.png)
 
+# main.cpp
+Here we input file stream and 2 options 
+ios::binary uploading as binary and not any other datatype (string, etc). Plus, ios::ate which means "at the end" which means we will imeediately seek the end of the input stream. Then on like 108--we can tell the program to use is.tellg() to determine the size of the input stream, and tell it to create a vector, called contents. Then we can seekg back to the beginning of the input string (is.seekg(0)) From there read in all of the input stream into the contents. Once we are done, we will return the contents vector using std::move(contents). 
+```
+static std::optional<std::vector<std::byte>> ReadFile(const std::string &path)
+{   
+    std::ifstream is{path, std::ios::binary | std::ios::ate};
+    if( !is )
+        return std::nullopt;
+    
+    auto size = is.tellg();
+    std::vector<std::byte> contents(size);    
+    
+    is.seekg(0);
+    is.read((char*)contents.data(), size);
 
+    if( contents.empty() )
+        return std::nullopt;
+    return std::move(contents);
+}
+```
 
 # Code Route Planning Project
 https://github.com/udacity/CppND-Route-Planning-Project
