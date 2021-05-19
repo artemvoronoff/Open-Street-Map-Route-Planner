@@ -80,10 +80,25 @@ Mapping a large river with distinct banks on either side of the river.
     Nodes are used to provide the coordinates of points along the banks of the river. Multiple nodes are then connected using ways; there are ways which form closed section of the river, labeled as "Areas" in the image below. These ways are then grouped together using a relation, which represents the entire river.
     ![alt text](https://video.udacity-data.com/topher/2019/August/5d51adfa_osm-river/osm-river.png)
 
+# io2d implementation
+Here you could find the implementation, and download. [here](https://github.com/cpp-io2d/P0267_RefImpl/blob/master/BUILDING.md)
+
+Michael Kazakov's io2d demo
+
+Central Park:
+./maps -b -73.9866,40.7635,-73.9613,40.7775
+![alt text](https://kazakov.life/wordpress/wp-content/uploads/2018/06/central_park.png)
+Acropolis of Athens:
+./maps -b 23.7125,37.9647,23.7332,37.9765
+![alt text](https://kazakov.life/wordpress/wp-content/uploads/2018/06/athens_acropolis.png)
+Vatican:
+./maps -b 12.44609,41.897,12.46575,41.907
+![alt text](https://kazakov.life/wordpress/wp-content/uploads/2018/06/vatican.png)
+
+
 
 # Code Route Planning Project
 https://github.com/udacity/CppND-Route-Planning-Project
-
 
 # OSM Route Planner Code Structure
 
